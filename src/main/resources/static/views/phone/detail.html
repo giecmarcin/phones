@@ -1,0 +1,128 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <center><h1>{{phone.fullName}}</h1></center>
+    <!--style="width:400px;height:600px;-->
+    <img ng-src="data:image/JPEG;base64,{{phone.imageUrl[0].image}}" align="middle">
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Specyfikacja</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Wartość</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cena</td>
+                    <td>{{phone.price}} zł</td>
+                </tr>
+                <tr>
+                    <td>Procesor</td>
+                    <td>{{phone.processor}}</td>
+                </tr>
+                <tr>
+                    <td>Układ graficzny</td>
+                    <td>{{phone.graphics}}</td>
+                </tr>
+                <tr>
+                    <td>Pamięć ram</td>
+                    <td>{{phone.ram}} GB</td>
+                </tr>
+                <tr>
+                    <td>Pamięć wbudowana</td>
+                    <td>{{phone.builtInMemory}} GB</td>
+                </tr>
+                <tr>
+                    <td>Typ ekranu</td>
+                    <td>{{phone.typeOfDisplay}}</td>
+                </tr>
+                <tr>
+                    <td>Przekątna ekranu</td>
+                    <td>{{phone.sizeOfDisplay}}</td>
+                </tr>
+                <tr>
+                    <td>Rozdzielczość ekranu</td>
+                    <td>{{phone.resolutionOfDisplay}}</td>
+                </tr>
+                <tr>
+                    <td>Łączność</td>
+                    <td>
+                        <p ng-repeat="c in phone.communication">
+                            {{c.name}}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>System nawigacji satelitarnej</td>
+                    <td>{{phone.navigation}}</td>
+                </tr>
+                <tr>
+                    <td>Złącza</td>
+                    <td>{{phone.connectors}}</td>
+                </tr>
+                <tr>
+                    <td>Pojemność baterii</td>
+                    <td>{{phone.capacityOfBattery}} mAh</td>
+                </tr>
+                <tr>
+                    <td>Zainstalowany system operacyjny</td>
+                    <td>{{phone.operatingSystem}}</td>
+                </tr>
+                <tr>
+                    <td>Aparat</td>
+                    <td>
+                        {{phone.cameraMPX}} Mpix - tył <br/>
+                        {{phone.frontCameraMPX}} Mpix - przód
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lampa błyskowa</td>
+                    <td>{{phone.flashLamp}}</td>
+                </tr>
+                <tr>
+                    <td>Rozdzielczość nagrywania wideo</td>
+                    <td>{{phone.resolutionRecordingVideo}}</td>
+                </tr>
+                <tr>
+                    <td>Grubość</td>
+                    <td>{{phone.thickness}} mm</td>
+                </tr>
+                <tr>
+                    <td>Szerokość</td>
+                    <td>{{phone.width}} mm</td>
+                </tr>
+                <tr>
+                    <td>Wysokość</td>
+                    <td>{{phone.height}} mm</td>
+                </tr>
+                <tr>
+                    <td>Waga</td>
+                    <td>{{phone.weight}} g</td>
+                </tr>
+                <tr>
+                    <td>Kolor</td>
+                    <td>{{phone.colour}}</td>
+                </tr>
+                <tr>
+                    <td>Dodatkowe informacje</td>
+                    <td>{{phone.extraInfo}}</td>
+                </tr>
+                <tr>
+                    <td>Dołączone akcesoria</td>
+                    <td>{{phone.includedAccessories}}</td>
+                </tr>
+                <tr>
+                    <td>Gwarancja</td>
+                    <td>{{phone.guarantee}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>

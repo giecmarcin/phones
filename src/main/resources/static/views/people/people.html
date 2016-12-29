@@ -1,0 +1,57 @@
+<div class="container">
+    <h1>People</h1>
+
+    <h3>{{message}}</h3>
+
+    <div class="col-md-4">
+        <br/>
+        <form>
+            <div class="form-group">
+                <h2>Add person</h2>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <div>
+                    <input type="text" class="form-control" id="nameOfUser" placeholder="Imie" ng-model="nameOfUser"/>
+                </div>
+
+                <label for="name">LastName:</label>
+                <div>
+                    <input type="text" class="form-control" id="lastNameOfUser" placeholder="Nazwisko" ng-model="lastNameOfUser"/>
+                </div>
+
+                <label for="name">Age:</label>
+                <div>
+                    <input type="text" class="form-control" id="name" placeholder="Wiek" ng-model="ageOfUser"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="savePerson()">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <!--mamy petle for each-->
+        <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+        <tbody>
+        <tr ng-repeat="p in people |orderBy:'name'">
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.lastName }}</td>
+            <td>{{ p.age}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

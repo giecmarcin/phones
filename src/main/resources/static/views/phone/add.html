@@ -1,0 +1,280 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Nowy telefon</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="brand">Marka:</label>
+                        <div>
+                            <input type="text" class="form-control" id="brand" placeholder="Marka" ng-model="brand"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Cena (zł):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="price" placeholder="799.99"
+                                   ng-model="price"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="graphics">Grafika:</label>
+                        <div>
+                            <input type="text" class="form-control" id="graphics" placeholder="Adreno 505"
+                                   ng-model="graphics"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="builtInMemory">Pamięć wbudowana (GB):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="builtInMemory" placeholder="16"
+                                   ng-model="builtInMemory"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sizeOfDisplay">Rozmiar ekanu:</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="sizeOfDisplay" placeholder="5"
+                                   ng-model="sizeOfDisplay"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="communication">Łączność:</label>
+                        <div>
+                            <input type="text" class="form-control" id="communication"
+                                   placeholder="Bluetooth, Wi-Fi, 4G"
+                                   ng-model="communication"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="operatingSystem">System operacyjny:</label>
+                        <div>
+                            <input type="text" class="form-control" id="operatingSystem"
+                                   placeholder="Android 6.0 Marshmallow"
+                                   ng-model="operatingSystem"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cameraMPX">Apart tył:</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="cameraMPX"
+                                   placeholder="8.0"
+                                   ng-model="cameraMPX"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thickness">Grubość (mm):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="thickness"
+                                   placeholder="8.5"
+                                   ng-model="thickness"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="width">Szerokość (mm):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="width"
+                                   placeholder="69"
+                                   ng-model="width"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Wysokość (mm):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="height"
+                                   placeholder="139"
+                                   ng-model="height"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Waga (g):</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="weight"
+                                   placeholder="143.0"
+                                   ng-model="weight"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="includedAccessories">Akcesoria:</label>
+                        <div>
+                            <input type="text" class="form-control" id="includedAccessories"
+                                   placeholder="Ładowarka Kabel USB"
+                                   ng-model="includedAccessories"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">Zdjęcie:</label>
+                        <div>
+                            <input type="file" id="file"
+                                   placeholder="" class="btn-success"/>
+                            <button id="confirmBtnImg" class="btn-success" ng-click="addImage()">Potwierdź</button>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--###################################################################################################################-->
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="brand">Pełna nazwa:</label>
+                        <div>
+                            <input type="text" class="form-control" id="fullName" placeholder="Apple iPhone 5S "
+                                   ng-model="fullName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="processor">Procesor:</label>
+                        <div>
+                            <input type="text" class="form-control" id="processor"
+                                   placeholder="Apple A7 (2 rdzenie, 1.30 GHz)" ng-model="processor"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ram">Pamięć ram:</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="ram" placeholder="2"
+                                   ng-model="ram"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeOfDisplay">Typ wyświetlacza:</label>
+                        <div>
+                            <input type="text" class="form-control" id="typeOfDisplay" placeholder="Pojemnościowy, 10-punktowy, IPS
+" ng-model="typeOfDisplay"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resolutionOfDisplay">Rozdzielczość wyświetlacza:</label>
+                        <div>
+                            <input type="text" class="form-control" id="resolutionOfDisplay" placeholder="1280 x 720"
+                                   ng-model="resolutionOfDisplay"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="navigation">System nawigacji:</label>
+                        <div>
+                            <input type="text" class="form-control" id="navigation" placeholder="GPS"
+                                   ng-model="navigation"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="capacityOfBattery">Pojemność baterii:</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="capacityOfBattery"
+                                   placeholder="2800"
+                                   ng-model="capacityOfBattery"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frontCameraMPX">Aparat przód:</label>
+                        <div>
+                            <input type="number" step="any" class="form-control" id="frontCameraMPX" placeholder="3.0"
+                                   ng-model="frontCameraMPX"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frontCameraMPX">Lampa błyskowa:</label>
+                        <div>
+                            <input type="text" class="form-control" id="flashLamp" placeholder="Wbudowana"
+                                   ng-model="flashLamp"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colour">Kolor:</label>
+                        <div>
+                            <input type="text" class="form-control" id="colour" placeholder="Szary"
+                                   ng-model="colour"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guarantee">Gwarancja:</label>
+                        <div>
+                            <input type="text" class="form-control" id="guarantee"
+                                   placeholder="24 miesiące (gwarancja producenta)"
+                                   ng-model="guarantee"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resolutionRecordingVideo">Rozdzielczość nagrywania:</label>
+                        <div>
+                            <input type="text" class="form-control" id="resolutionRecordingVideo"
+                                   placeholder="1920 x 1080 (FullHD)"
+                                   ng-model="resolutionRecordingVideo"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="connectors">Złącza:</label>
+                        <div>
+                            <textarea type="text" class="form-control" id="connectors"
+                                      placeholder="Gniazdo kart microSIM - 1 szt. Micro USB - 1 szt."
+                                      ng-model="connectors" cols="40" rows="3"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extraInfo">Dodatkowe informacje:</label>
+                        <div>
+                            <textarea class="form-control" id="extraInfo"
+                                      placeholder="Czytnik linii papilarnych Obsługa dwóch kart SIM"
+                                      ng-model="extraInfo" cols="40" rows="3"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Ilość:</label>
+                        <div>
+                            <input type="number" class="form-control" id="quantity"
+                                   placeholder="1000"
+                                   ng-model="quantity"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <!--<button type="button" class="btn btn-default">Left</button>-->
+                            <!--<button type="button" class="btn btn-default">Middle</button>-->
+                            <!--<button type="button" class="btn btn-default">Right</button>-->
+                            <button type="submit" class="btn btn-default" ng-click="savePhone()">Dodaj</button>
+                            <button type="submit" class="btn btn-default" ng-click="loadTestData()">Test</button>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>

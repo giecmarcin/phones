@@ -1,0 +1,57 @@
+<div class="col-md-2" xmlns:color="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"></div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Koszyk</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cena</th>
+                    <th>Ilość</th>
+                    <th>Razem</th>
+                    <th>Akcja</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in phonesInBasket">
+                    <td>{{ p.phone.fullName }}</td>
+                    <td>{{p.phone.price}} zł</td>
+                    <td>{{p.quantity}}
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="addOne(p)">+</button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="subtractOne(p)">-</button>
+                        </div>
+                    </td>
+                    <td>{{p.phone.price*p.quantity}} zł</td>
+                    <td><a href="" ng-click="removeItem(p)">Usuń</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">Podsumowanie</div>
+        <div class="panel-body">
+            <p style="color: red">{{message}}</p>
+            <br/><b>Klient:</b>
+            <br/>Imię: <i>{{customerFirstName}}</i>
+            <br/>Nazwisko: <i>{{customerLastName}}</i>
+            <br/>Email: <i>{{customerEmail}}</i>
+            <br/>
+            <br/><b>Liczba elementów:</b>{{numberOfItems}}
+            <br/><b>Wartość:</b> {{cost}} zł
+            <br/>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="confirmOrder()">Potwierdź</button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="removeAllItems()">Wyczyść</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>
+
+
+</body>
+</html>

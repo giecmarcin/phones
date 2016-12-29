@@ -1,0 +1,13 @@
+.thumbnail img {
+    width: 200px;
+    height: 150px;
+}
+
+.thumbnail {
+    width: 280px;
+    height: 580px;
+}
+
+.thumbnail h3 {
+    height: 100px;
+}
