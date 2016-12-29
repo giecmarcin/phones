@@ -18,6 +18,7 @@
                 <th>Nazwa</th>
                 <th>Cena</th>
                 <th>Ilość</th>
+                <th>Akcja</th>
             </tr>
             </thead>
             <!--mamy petle for each-->
@@ -146,16 +147,16 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="file">Zdjęcie:</label>
-                                    <div>
-                                        <input type="file" id="file"
-                                               placeholder="" class="btn-success"/>
-                                        <button id="confirmBtnImg" class="btn-success" ng-click="addImage()">Potwierdź
-                                        </button>
+                                <!--<div class="form-group">-->
+                                <!--<label for="file">Zdjęcie:</label>-->
+                                <!--<div>-->
+                                <!--<input type="file" id="file"-->
+                                <!--placeholder="" class="btn-success"/>-->
+                                <!--<button id="confirmBtnImg" class="btn-success" ng-click="addImage()">Potwierdź-->
+                                <!--</button>-->
 
-                                    </div>
-                                </div>
+                                <!--</div>-->
+                                <!--</div>-->
 
                                 <div class="form-group">
                                     <div>
@@ -313,6 +314,9 @@
                 </td>
                 <td>{{ p.phone.price }} zł</td>
                 <td>{{ p.quantity }} szt</td>
+                <td>
+                    <a href="" ng-click="removePhone(p.phone.id)">Usuń</a>
+                </td>
             </tr>
             </tbody>
         </table>

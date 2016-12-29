@@ -52,4 +52,25 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
         output = output.substring(0, output.length - 1);
         return output;
     }
+
+    $scope.removePhone = function (id) {
+        alert(id);
+        $http({
+            method: 'DELETE',
+            url: '/api/phone/remove/' + id
+        }).success(function (data) {
+            alert('Telefon został usunięty' + id);
+            var index;
+            for (var i = 0; i < $scope.allPhones.length; i++) {
+                if (angular.equals($scope.allPhones[i].phone.id, id)) {
+                    index = i;
+                    break;
+                }
+            }
+            $scope.allPhones.splice(index, 1); //return removed object
+        }).error(function (error) {
+            //Showing error message
+            alert('Nie udało się usunąć telefonu.');
+        });
+    }
 });
