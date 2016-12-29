@@ -27,4 +27,6 @@ public interface PhoneService {
     Phone findOne(int id);
 
     List<PhoneAndQuantity> findAllWithQuantity();
+
+    Integer findQuantity(int phoneId);
 }

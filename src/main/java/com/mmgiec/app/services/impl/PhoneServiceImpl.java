@@ -87,4 +87,9 @@ public class PhoneServiceImpl implements PhoneService {
         }
         return phoneAndQuantities;
     }
+
+    @Override
+    public Integer findQuantity(int phoneId) {
+        return warehouseRepository.findQuantityByPhoneId(phoneId);
+    }
 }

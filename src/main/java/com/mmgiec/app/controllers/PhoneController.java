@@ -78,4 +78,20 @@ public class PhoneController {
         }
         return ResponseEntity.ok(phoneAndQuantity.getPhone());
     }
+
+    @GetMapping("api/phone/quantity/{id}")
+    public ResponseEntity<?> findAllBrands(@PathVariable int id) {
+        Integer quantity = phoneService.findQuantity(id);
+        if (quantity == 0)
+            return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(quantity);
+    }
+
+    @GetMapping("api/phone/all/quantity")
+    public ResponseEntity<?> findAll() {
+        List<PhoneAndQuantity> phones = phoneService.findAllWithQuantity();
+        if (phones.isEmpty())
+            return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(phones);
+    }
 }
