@@ -54,7 +54,6 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
     }
 
     $scope.removePhone = function (id) {
-        alert(id);
         $http({
             method: 'DELETE',
             url: '/api/phone/remove/' + id
