@@ -94,4 +94,15 @@ public class PhoneController {
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
         return ResponseEntity.ok(phones);
     }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @DeleteMapping(value = "api/phone/remove/{id}")
+    public ResponseEntity<?> removePhone(@PathVariable int id) {
+        phoneService.removeWithWarehouse(id);
+        Phone phone = phoneService.findOne(id);
+        if (phone == null) {
+            return ResponseEntity.ok(phone);
+        }
+        return new ResponseEntity<Object>(HttpStatus.NOT_MODIFIED);
+    }
 }

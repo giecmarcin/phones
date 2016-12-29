@@ -29,4 +29,6 @@ public interface PhoneService {
     List<PhoneAndQuantity> findAllWithQuantity();
 
     Integer findQuantity(int phoneId);
+
+    void removeWithWarehouse(int phoneId);
 }

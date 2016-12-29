@@ -92,4 +92,10 @@ public class PhoneServiceImpl implements PhoneService {
     public Integer findQuantity(int phoneId) {
         return warehouseRepository.findQuantityByPhoneId(phoneId);
     }
+
+    @Override
+    public void removeWithWarehouse(int phoneId) {
+        phoneRepository.remove(phoneId);
+        warehouseRepository.removeByPhoneId(phoneId);
+    }
 }

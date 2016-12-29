@@ -37,4 +37,20 @@ public class WarehouseRepository {
             return result.get(0);
         return 0;
     }
+
+    public Warehouse findByPhoneId(int phoneId) {
+        TypedQuery<Warehouse> query = entityManager.createQuery("select w from Warehouse w where w.phoneId=:phoneId", Warehouse.class);
+        query.setParameter("phoneId", phoneId);
+        List<Warehouse> result = query.getResultList();
+        if (!result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+    public void removeByPhoneId(int phoneId) {
+        Warehouse warehouse = findByPhoneId(phoneId);
+        if (warehouse != null) {
+            entityManager.remove(warehouse);
+        }
+    }
 }

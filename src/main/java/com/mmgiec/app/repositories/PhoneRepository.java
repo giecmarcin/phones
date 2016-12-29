@@ -69,4 +69,9 @@ public class PhoneRepository {
         else
             return null;
     }
+
+    public void remove(int phoneId) {
+        Phone p = entityManager.find(Phone.class, phoneId);
+        entityManager.remove(p);
+    }
 }
