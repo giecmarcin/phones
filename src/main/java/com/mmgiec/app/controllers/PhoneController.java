@@ -109,6 +109,7 @@ public class PhoneController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @PostMapping(value = "api/phone/edit")
     public void editPhone(@RequestBody PhoneAndQuantity phoneAndQuantity) {
+        //System.out.println(phoneAndQuantity.getPhone().getCommunication().get(0).getName());
         phoneService.updateWithQuantity(phoneAndQuantity.getPhone(), phoneAndQuantity.getQuantity());
     }
 }

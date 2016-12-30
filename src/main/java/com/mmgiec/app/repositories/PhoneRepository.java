@@ -61,7 +61,7 @@ public class PhoneRepository {
     }
 
     public Phone findOne(int id) {
-        TypedQuery<Phone> query = entityManager.createQuery("select p from Phone p where p.id=:id", Phone.class);
+        TypedQuery<Phone> query = entityManager.createQuery("select p from Phone p left join fetch p.communication where p.id=:id", Phone.class);
         query.setParameter("id", id);
         List<Phone> result = query.getResultList();
         if (!result.isEmpty())
@@ -77,7 +77,7 @@ public class PhoneRepository {
 
     public Phone update(Phone phone) {
         int id = phone.getId();
-        Phone p = entityManager.find(Phone.class, id);
+        Phone p = findOne(id);
         p.setBrand(phone.getBrand());
         p.setFullName(phone.getFullName());
         p.setPrice(phone.getPrice());
@@ -88,7 +88,7 @@ public class PhoneRepository {
         p.setTypeOfDisplay(phone.getTypeOfDisplay());
         p.setSizeOfDisplay(phone.getSizeOfDisplay());
         p.setResolutionOfDisplay(phone.getResolutionOfDisplay());
-        p.setCommunication(phone.getCommunication());
+        //p.setCommunication(phone.getCommunication());
         p.setNavigation(phone.getNavigation());
         p.setConnectors(phone.getConnectors());
         p.setCapacityOfBattery(phone.getCapacityOfBattery());
@@ -107,7 +107,7 @@ public class PhoneRepository {
         p.setGuarantee(phone.getGuarantee());
         p.setResolutionRecordingVideo(phone.getResolutionRecordingVideo());
         p.setIncludedAccessories(phone.getIncludedAccessories());
-        entityManager.refresh(p);
+        entityManager.flush();
         return p;
     }
 }

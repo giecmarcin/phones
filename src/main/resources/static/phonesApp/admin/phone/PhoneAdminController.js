@@ -23,7 +23,7 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
             }
         }
 
-
+        $scope.pId = phoneId;
         $scope.brand = $scope.allPhones[index].phone.brand,
             $scope.fullName = $scope.allPhones[index].phone.fullName,
             $scope.price = $scope.allPhones[index].phone.price,
@@ -91,49 +91,54 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
         });
     }
 
-    $scope.editPhone = function (id) {
-        var test = $scope.brand + id;
-        alert(test);
-        // var phone = {
-        //     brand: $scope.brand,
-        //     fullName: $scope.fullName,
-        //     price: $scope.price,
-        //     processor: $scope.processor,
-        //     graphics: $scope.graphics,
-        //     ram: $scope.ram,
-        //     builtInMemory: $scope.builtInMemory,
-        //     typeOfDisplay: $scope.typeOfDisplay,
-        //     sizeOfDisplay: $scope.sizeOfDisplay,
-        //     resolutionOfDisplay: $scope.resolutionOfDisplay,
-        //     communication: $scope.communication,
-        //     navigation: $scope.navigation,
-        //     connectors: $scope.connectors,
-        //     capacityOfBattery: $scope.capacityOfBattery,
-        //     operatingSystem: $scope.operatingSystem,
-        //     frontCameraMPX: $scope.frontCameraMPX,
-        //     cameraMPX: $scope.cameraMPX,
-        //     flashLamp: $scope.flashLamp,
-        //     thickness: $scope.thickness,
-        //     width: $scope.width,
-        //     height: $scope.height,
-        //     weight: $scope.weight,
-        //     colour: $scope.colour,
-        //     extraInfo: $scope.extraInfo,
-        //     guarantee: $scope.guarantee,
-        //     resolutionRecordingVideo: $scope.resolutionRecordingVideo,
-        //     includedAccessories: $scope.includedAccessories,
-        // };
-        // var phoneAndQuantity = {
-        //     phone:phone,
-        //     quantity:$scope.quantity
-        // };
-        // $scope.brand='tha'
-        //alert(phoneAndQuantity.phone.brand);
-        // $http.post('/api/phone/edit', phoneAndQuantity).success(function () {
-        //     alert('Telfon został zmodyfikowany');
-        // }).error(function () {
-        //     alert('Nie udało się zmienić danych!');
-        // })
+    $scope.editPhone = function () {
+        //alert($scope.pId);
+        var communicationTab = [];
+        $scope.communication;
+        if ($scope.communication != undefined) {
+            communicationTab = $scope.communication.split(',');
+        }
+        var phone = {
+            id: $scope.pId,
+            brand: $scope.brand,
+            fullName: $scope.fullName,
+            price: $scope.price,
+            processor: $scope.processor,
+            graphics: $scope.graphics,
+            ram: $scope.ram,
+            builtInMemory: $scope.builtInMemory,
+            typeOfDisplay: $scope.typeOfDisplay,
+            sizeOfDisplay: $scope.sizeOfDisplay,
+            resolutionOfDisplay: $scope.resolutionOfDisplay,
+            communication: communicationTab,
+            navigation: $scope.navigation,
+            connectors: $scope.connectors,
+            capacityOfBattery: $scope.capacityOfBattery,
+            operatingSystem: $scope.operatingSystem,
+            frontCameraMPX: $scope.frontCameraMPX,
+            cameraMPX: $scope.cameraMPX,
+            flashLamp: $scope.flashLamp,
+            thickness: $scope.thickness,
+            width: $scope.width,
+            height: $scope.height,
+            weight: $scope.weight,
+            colour: $scope.colour,
+            extraInfo: $scope.extraInfo,
+            guarantee: $scope.guarantee,
+            resolutionRecordingVideo: $scope.resolutionRecordingVideo,
+            includedAccessories: $scope.includedAccessories
+        };
+        var phoneAndQuantity = {
+            phone: phone,
+            quantity: $scope.quantity
+        };
+
+        $http.post('/api/phone/edit', phoneAndQuantity).success(function () {
+            alert('Telfon został zmodyfikowany');
+            $scope.showForm = false;
+        }).error(function () {
+            alert('Nie udało się zmienić danych!');
+        })
     }
 
 
