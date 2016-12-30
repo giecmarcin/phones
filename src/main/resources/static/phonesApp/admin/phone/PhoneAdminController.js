@@ -134,6 +134,7 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
         };
 
         $http.post('/api/phone/edit', phoneAndQuantity).success(function () {
+            loadPhonesFromDb();
             alert('Telfon został zmodyfikowany');
             $scope.showForm = false;
         }).error(function () {
