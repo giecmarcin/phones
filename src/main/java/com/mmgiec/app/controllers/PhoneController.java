@@ -105,4 +105,10 @@ public class PhoneController {
         }
         return new ResponseEntity<Object>(HttpStatus.NOT_MODIFIED);
     }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PostMapping(value = "api/phone/edit")
+    public void editPhone(@RequestBody PhoneAndQuantity phoneAndQuantity) {
+        phoneService.updateWithQuantity(phoneAndQuantity.getPhone(), phoneAndQuantity.getQuantity());
+    }
 }

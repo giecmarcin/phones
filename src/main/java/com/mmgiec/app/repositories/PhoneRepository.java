@@ -74,4 +74,40 @@ public class PhoneRepository {
         Phone p = entityManager.find(Phone.class, phoneId);
         entityManager.remove(p);
     }
+
+    public Phone update(Phone phone) {
+        int id = phone.getId();
+        Phone p = entityManager.find(Phone.class, id);
+        p.setBrand(phone.getBrand());
+        p.setFullName(phone.getFullName());
+        p.setPrice(phone.getPrice());
+        p.setProcessor(phone.getProcessor());
+        p.setGraphics(phone.getGraphics());
+        p.setRam(phone.getRam());
+        p.setBuiltInMemory(phone.getBuiltInMemory());
+        p.setTypeOfDisplay(phone.getTypeOfDisplay());
+        p.setSizeOfDisplay(phone.getSizeOfDisplay());
+        p.setResolutionOfDisplay(phone.getResolutionOfDisplay());
+        p.setCommunication(phone.getCommunication());
+        p.setNavigation(phone.getNavigation());
+        p.setConnectors(phone.getConnectors());
+        p.setCapacityOfBattery(phone.getCapacityOfBattery());
+        p.setOperatingSystem(phone.getOperatingSystem());
+        p.setFrontCameraMPX(phone.getFrontCameraMPX());
+        p.setCameraMPX(phone.getCameraMPX());
+        p.setFlashLamp(phone.getFlashLamp());
+        p.setThickness(phone.getThickness());
+        p.setWidth(phone.getWidth());
+        p.setHeight(phone.getHeight());
+        p.setWeight(phone.getWeight());
+        p.setColour(phone.getColour());
+        p.setImageUrl(phone.getImageUrl());
+        p.setImageUrlXKom(phone.getImageUrlXKom());
+        p.setExtraInfo(phone.getExtraInfo());
+        p.setGuarantee(phone.getGuarantee());
+        p.setResolutionRecordingVideo(phone.getResolutionRecordingVideo());
+        p.setIncludedAccessories(phone.getIncludedAccessories());
+        entityManager.refresh(p);
+        return p;
+    }
 }

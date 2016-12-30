@@ -53,4 +53,10 @@ public class WarehouseRepository {
             entityManager.remove(warehouse);
         }
     }
+
+    public void updateByPhoneId(int phoneId, int newQuantity) {
+        Warehouse warehouse = findByPhoneId(phoneId);
+        warehouse.setQuantity(newQuantity);
+        entityManager.refresh(warehouse);
+    }
 }

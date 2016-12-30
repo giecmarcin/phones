@@ -1,6 +1,7 @@
-angular.module('phonesApp').controller('PhoneAdminController', function ($scope, $resource, $http, $routeParams, $rootScope) {
+angular.module('phonesApp').controller('PhoneAdminController', function ($scope, $resource, $http, $routeParams, $rootScope, $location, $anchorScroll) {
     $scope.message = 'adminController';
     $scope.allPhones;
+    $scope.showForm = false;
     var urlToAllPhones = 'api/phone/all/quantity';
     var loadPhonesFromDb = function () {
         var phones = $resource(urlToAllPhones, {}, {
@@ -13,36 +14,52 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
     };
     loadPhonesFromDb();
 
-    $scope.loadDataForPhone = function (id) {
-        $scope.brand = $scope.allPhones[id].phone.brand,
-            $scope.fullName = $scope.allPhones[id].phone.fullName,
-            $scope.price = $scope.allPhones[id].phone.price,
-            $scope.processor = $scope.allPhones[id].phone.processor,
-            $scope.graphics = $scope.allPhones[id].phone.graphics,
-            $scope.ram = $scope.allPhones[id].phone.ram,
-            $scope.builtInMemory = $scope.allPhones[id].phone.builtInMemory,
-            $scope.typeOfDisplay = $scope.allPhones[id].phone.typeOfDisplay,
-            $scope.sizeOfDisplay = $scope.allPhones[id].phone.sizeOfDisplay,
-            $scope.resolutionOfDisplay = $scope.allPhones[id].phone.resolutionOfDisplay,
-            $scope.communication = createStringByArray($scope.allPhones[id].phone.communication);
-        $scope.navigation = $scope.allPhones[id].phone.navigation,
-            $scope.connectors = $scope.allPhones[id].phone.connectors,
-            $scope.capacityOfBattery = $scope.allPhones[id].phone.capacityOfBattery;
-        $scope.operatingSystem = $scope.allPhones[id].phone.operatingSystem,
-            $scope.frontCameraMPX = $scope.allPhones[id].phone.frontCameraMPX,
-            $scope.cameraMPX = $scope.allPhones[id].phone.cameraMPX,
-            $scope.flashLamp = $scope.allPhones[id].phone.flashLamp,
-            $scope.thickness = $scope.allPhones[id].phone.thickness,
-            $scope.width = $scope.allPhones[id].phone.width,
-            $scope.height = $scope.allPhones[id].phone.height,
-            $scope.weight = $scope.allPhones[id].phone.weight,
-            $scope.colour = $scope.allPhones[id].phone.colour,
-            $scope.extraInfo = $scope.allPhones[id].phone.extraInfo,
-            $scope.guarantee = $scope.allPhones[id].phone.guarantee,
-            $scope.resolutionRecordingVideo = $scope.allPhones[id].phone.resolutionRecordingVideo;
-        $scope.includedAccessories = $scope.allPhones[id].phone.includedAccessories,
+    $scope.loadDataForPhone = function (phoneId, id) {
+        var index;
+        for (var i = 0; i < $scope.allPhones.length; i++) {
+            if (angular.equals($scope.allPhones[i].phone.id, phoneId)) {
+                index = i;
+                break;
+            }
+        }
+
+
+        $scope.brand = $scope.allPhones[index].phone.brand,
+            $scope.fullName = $scope.allPhones[index].phone.fullName,
+            $scope.price = $scope.allPhones[index].phone.price,
+            $scope.processor = $scope.allPhones[index].phone.processor,
+            $scope.graphics = $scope.allPhones[index].phone.graphics,
+            $scope.ram = $scope.allPhones[index].phone.ram,
+            $scope.builtInMemory = $scope.allPhones[index].phone.builtInMemory,
+            $scope.typeOfDisplay = $scope.allPhones[index].phone.typeOfDisplay,
+            $scope.sizeOfDisplay = $scope.allPhones[index].phone.sizeOfDisplay,
+            $scope.resolutionOfDisplay = $scope.allPhones[index].phone.resolutionOfDisplay,
+            $scope.communication = createStringByArray($scope.allPhones[index].phone.communication);
+        $scope.navigation = $scope.allPhones[index].phone.navigation,
+            $scope.connectors = $scope.allPhones[index].phone.connectors,
+            $scope.capacityOfBattery = $scope.allPhones[index].phone.capacityOfBattery;
+        $scope.operatingSystem = $scope.allPhones[index].phone.operatingSystem,
+            $scope.frontCameraMPX = $scope.allPhones[index].phone.frontCameraMPX,
+            $scope.cameraMPX = $scope.allPhones[index].phone.cameraMPX,
+            $scope.flashLamp = $scope.allPhones[index].phone.flashLamp,
+            $scope.thickness = $scope.allPhones[index].phone.thickness,
+            $scope.width = $scope.allPhones[index].phone.width,
+            $scope.height = $scope.allPhones[index].phone.height,
+            $scope.weight = $scope.allPhones[index].phone.weight,
+            $scope.colour = $scope.allPhones[index].phone.colour,
+            $scope.extraInfo = $scope.allPhones[index].phone.extraInfo,
+            $scope.guarantee = $scope.allPhones[index].phone.guarantee,
+            $scope.resolutionRecordingVideo = $scope.allPhones[index].phone.resolutionRecordingVideo;
+        $scope.includedAccessories = $scope.allPhones[index].phone.includedAccessories,
             $scope.quantity = $scope.allPhones[id].quantity;
-    }
+        $scope.showForm = true;
+        $scope.scrollTo('formForEdit');
+    };
+
+    $scope.scrollTo = function (id) {
+        $location.hash(id);
+        $anchorScroll();
+    };
 
     function createStringByArray(array) {
         var output = '';
@@ -52,6 +69,7 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
         output = output.substring(0, output.length - 1);
         return output;
     }
+
 
     $scope.removePhone = function (id) {
         $http({
@@ -72,4 +90,51 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
             alert('Nie udało się usunąć telefonu.');
         });
     }
+
+    $scope.editPhone = function (id) {
+        var test = $scope.brand + id;
+        alert(test);
+        // var phone = {
+        //     brand: $scope.brand,
+        //     fullName: $scope.fullName,
+        //     price: $scope.price,
+        //     processor: $scope.processor,
+        //     graphics: $scope.graphics,
+        //     ram: $scope.ram,
+        //     builtInMemory: $scope.builtInMemory,
+        //     typeOfDisplay: $scope.typeOfDisplay,
+        //     sizeOfDisplay: $scope.sizeOfDisplay,
+        //     resolutionOfDisplay: $scope.resolutionOfDisplay,
+        //     communication: $scope.communication,
+        //     navigation: $scope.navigation,
+        //     connectors: $scope.connectors,
+        //     capacityOfBattery: $scope.capacityOfBattery,
+        //     operatingSystem: $scope.operatingSystem,
+        //     frontCameraMPX: $scope.frontCameraMPX,
+        //     cameraMPX: $scope.cameraMPX,
+        //     flashLamp: $scope.flashLamp,
+        //     thickness: $scope.thickness,
+        //     width: $scope.width,
+        //     height: $scope.height,
+        //     weight: $scope.weight,
+        //     colour: $scope.colour,
+        //     extraInfo: $scope.extraInfo,
+        //     guarantee: $scope.guarantee,
+        //     resolutionRecordingVideo: $scope.resolutionRecordingVideo,
+        //     includedAccessories: $scope.includedAccessories,
+        // };
+        // var phoneAndQuantity = {
+        //     phone:phone,
+        //     quantity:$scope.quantity
+        // };
+        // $scope.brand='tha'
+        //alert(phoneAndQuantity.phone.brand);
+        // $http.post('/api/phone/edit', phoneAndQuantity).success(function () {
+        //     alert('Telfon został zmodyfikowany');
+        // }).error(function () {
+        //     alert('Nie udało się zmienić danych!');
+        // })
+    }
+
+
 });

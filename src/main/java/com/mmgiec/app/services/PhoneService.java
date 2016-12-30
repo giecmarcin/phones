@@ -31,4 +31,6 @@ public interface PhoneService {
     Integer findQuantity(int phoneId);
 
     void removeWithWarehouse(int phoneId);
+
+    void updateWithQuantity(Phone phone, int newQuantity);
 }

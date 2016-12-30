@@ -98,4 +98,10 @@ public class PhoneServiceImpl implements PhoneService {
         phoneRepository.remove(phoneId);
         warehouseRepository.removeByPhoneId(phoneId);
     }
+
+    @Override
+    public void updateWithQuantity(Phone phone, int newQuantity) {
+        phoneRepository.update(phone);
+        warehouseRepository.updateByPhoneId(phone.getId(), newQuantity);
+    }
 }
