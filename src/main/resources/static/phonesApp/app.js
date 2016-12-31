@@ -36,16 +36,10 @@ phonesApp.config(function ($routeProvider) {
                                 if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                                     $localStorage.isAdmin = true;
                                 } else {
-                                    $localStorage.isAdmin = false;
-                                    if (!$localStorage.isAdmin) {
-                                        $location.path("/");
-                                    }
-                                }
-                            } else {
-                                $localStorage.isAdmin = false;
-                                if (!$localStorage.isAdmin) {
                                     $location.path("/");
                                 }
+                            } else {
+                                $location.path("/");
                             }
                         })
                 }
