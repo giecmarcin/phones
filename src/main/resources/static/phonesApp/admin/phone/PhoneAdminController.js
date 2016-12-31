@@ -1,16 +1,15 @@
-angular.module('phonesApp').controller('PhoneAdminController', function ($scope, $resource, $http, $routeParams, $rootScope, $location, $anchorScroll) {
+angular.module('phonesApp').controller('PhoneAdminController', function ($scope, $http, $routeParams, $rootScope, $location, $anchorScroll, PhoneService) {
     $scope.message = 'adminController';
     $scope.allPhones;
     $scope.showForm = false;
-    var urlToAllPhones = 'api/phone/all/quantity';
+
     var loadPhonesFromDb = function () {
-        var phones = $resource(urlToAllPhones, {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-        phones.query(function (response) {
-            $scope.allPhones = response;
-            $rootScope.allPhonesFromDb = response;
-        });
+        PhoneService
+            .findAll('api/phone/all/quantity')
+            .then(function (response) {
+                $scope.allPhones = response;
+                $rootScope.allPhonesFromDb = response;
+            })
     };
     loadPhonesFromDb();
 
@@ -72,23 +71,19 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
 
 
     $scope.removePhone = function (id) {
-        $http({
-            method: 'DELETE',
-            url: '/api/phone/remove/' + id
-        }).success(function (data) {
-            alert('Telefon został usunięty' + id);
-            var index;
-            for (var i = 0; i < $scope.allPhones.length; i++) {
-                if (angular.equals($scope.allPhones[i].phone.id, id)) {
-                    index = i;
-                    break;
+        PhoneService
+            .removePhone(id)
+            .then(function (response) {
+                var index;
+                for (var i = 0; i < $scope.allPhones.length; i++) {
+                    if (angular.equals($scope.allPhones[i].phone.id, id)) {
+                        index = i;
+                        break;
+                    }
                 }
-            }
-            $scope.allPhones.splice(index, 1); //return removed object
-        }).error(function (error) {
-            //Showing error message
-            alert('Nie udało się usunąć telefonu.');
-        });
+                $scope.allPhones.splice(index, 1);
+                alert('Telefon został usunięty.');
+            })
     }
 
     $scope.editPhone = function () {

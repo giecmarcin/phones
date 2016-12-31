@@ -30,4 +30,30 @@ angular.module('phonesApp').service('PhoneService', function ($http, $resource) 
             return response.status;
         });
     }
+
+    this.removePhone = function (id) {
+        var url = '/api/phone/remove/' + id;
+        return $http({
+            method: "DELETE",
+            url: url
+        }).then(function successCallback(response) {
+            //return angular.toJson(response.data);
+            return response.data;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    }
+
+    this.addPhone = function (phone) {
+        return $http({
+            method: "POST",
+            url: '/api/phone/add',
+            data: phone
+        }).then(function successCallback(response) {
+            //return angular.toJson(response.data);
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    }
 });

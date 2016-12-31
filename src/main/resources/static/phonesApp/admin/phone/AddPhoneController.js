@@ -1,4 +1,4 @@
-angular.module('phonesApp').controller('AddPhoneController', function ($scope, $resource, $http, $routeParams, $rootScope, $timeout) {
+angular.module('phonesApp').controller('AddPhoneController', function ($scope, PhoneService) {
     $scope.message = 'Dodawnie telefonu';
 
     //Zapis osoby do bazy danych
@@ -60,11 +60,15 @@ angular.module('phonesApp').controller('AddPhoneController', function ($scope, $
         if (angular.equals($scope.data, 'none')) {
             alert("Ładuje zdjęcie. Spróbuj za chwilę jeszcze raz.");
         } else {
-            $http.post('/api/phone/add', phoneAndQuantity).success(function () {
-                alert('Telfon został dodany');
-            }).error(function () {
-                alert('We have problem!');
-            })
+            PhoneService
+                .addPhone(phoneAndQuantity)
+                .then(function (response) {
+                    if (response.status == 200) {
+                        alert('Telefon został dodany');
+                    } else {
+                        alert('Nie udało się dodać telefonu.');
+                    }
+                })
         }
     };
 
