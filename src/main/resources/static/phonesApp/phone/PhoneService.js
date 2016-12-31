@@ -18,4 +18,16 @@ angular.module('phonesApp').service('PhoneService', function ($http, $resource) 
             return response.status;
         });
     }
+
+    this.findAll = function (url) {
+        return $http({
+            method: "GET",
+            url: url
+        }).then(function successCallback(response) {
+            //return angular.toJson(response.data);
+            return response.data;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    }
 });

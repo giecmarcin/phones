@@ -1,107 +1,97 @@
-angular.module('phonesApp').controller('PhoneController', function ($scope, $resource, $http, $rootScope, $localStorage) {
+angular.module('phonesApp').controller('PhoneController', function ($scope, $rootScope, $localStorage, PhoneService) {
     $scope.message = 'Telefony';
     $scope.phones;
     $scope.allBrandsFromDb;
-    //$resource("../rest/api"}).get(); return an object.
-    //$resource("../rest/api").query(); return an array.
+
     var loadBrandsFromDb = function () {
-        var brands = $resource('api/phone/brand/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        brands.query(function (response) {
-            $scope.allBrandsFromDb = response;
-            $scope.brands = $scope.allBrandsFromDb;
-            $scope.selectionBrand = $scope.allBrandsFromDb.slice(); // slice() operation clones the array and returns the reference to the new array
-        });
+        PhoneService
+            .findAll('api/phone/brand/all')
+            .then(function (response) {
+                $scope.allBrandsFromDb = response;
+                $scope.brands = $scope.allBrandsFromDb;
+                $scope.selectionBrand = $scope.allBrandsFromDb.slice(); // slice() operation clones the array and returns the reference to the new array
+            })
     };
-
     loadBrandsFromDb();
 
     $scope.allMemoryFromDb;
     var loadBuiltInMemorySizesFromDb = function () {
-        var memory = $resource('api/phone/builtInMemory/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        memory.query(function (response) {
-            $scope.allMemoryFromDb = response;
-            $scope.maxMemory = 0;
-            for (var i = 0; i < $scope.allMemoryFromDb.length; i++) {
-                if ($scope.allMemoryFromDb[i] > $scope.maxMemory)
-                    $scope.maxMemory = $scope.allMemoryFromDb[i];
-            }
-
-            $scope.memorySlider = {
-                minValue: 0,
-                maxValue: $scope.maxMemory,
-                options: {
-                    floor: 0,
-                    ceil: $scope.maxMemory,
-                    step: 1,
-                    noSwitching: true
+        PhoneService
+            .findAll('api/phone/builtInMemory/all')
+            .then(function (response) {
+                $scope.allMemoryFromDb = response;
+                $scope.maxMemory = 0;
+                for (var i = 0; i < $scope.allMemoryFromDb.length; i++) {
+                    if ($scope.allMemoryFromDb[i] > $scope.maxMemory)
+                        $scope.maxMemory = $scope.allMemoryFromDb[i];
                 }
-            };
-        });
+
+                $scope.memorySlider = {
+                    minValue: 0,
+                    maxValue: $scope.maxMemory,
+                    options: {
+                        floor: 0,
+                        ceil: $scope.maxMemory,
+                        step: 1,
+                        noSwitching: true
+                    }
+                };
+            })
     };
     loadBuiltInMemorySizesFromDb();
 
 
     $scope.allRamSizesFromDb;
     var loadAllRamSizesFromDb = function () {
-        var ram = $resource('api/phone/ram/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        ram.query(function (response) {
-            $scope.allRamSizesFromDb = response;
-            $scope.maxRam = 0;
-            for (var i = 0; i < $scope.allRamSizesFromDb.length - 1; i++) {
-                if ($scope.allRamSizesFromDb[i] > $scope.maxRam)
-                    $scope.maxRam = $scope.allRamSizesFromDb[i];
-            }
-            $scope.ramSlider = {
-                minValue: 0,
-                maxValue: $scope.maxRam,
-                options: {
-                    floor: 0,
-                    ceil: $scope.maxRam,
-                    step: 1,
-                    noSwitching: true
+        PhoneService.findAll('api/phone/ram/all')
+            .then(function (response) {
+                $scope.allRamSizesFromDb = response;
+                $scope.maxRam = 0;
+                for (var i = 0; i < $scope.allRamSizesFromDb.length - 1; i++) {
+                    if ($scope.allRamSizesFromDb[i] > $scope.maxRam)
+                        $scope.maxRam = $scope.allRamSizesFromDb[i];
                 }
-            };
-        });
+                $scope.ramSlider = {
+                    minValue: 0,
+                    maxValue: $scope.maxRam,
+                    options: {
+                        floor: 0,
+                        ceil: $scope.maxRam,
+                        step: 1,
+                        noSwitching: true
+                    }
+                };
+            })
     };
     loadAllRamSizesFromDb();
 
-    //here
+
     $scope.allDisplaySizesFromDb;
     var loadAllDisplaySizesFromDb = function () {
-        var displaySizes = $resource('api/phone/displaySizes/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
 
-        displaySizes.query(function (response) {
-            $scope.allDisplaySizesFromDb = response;
-            $scope.maxSizeOfDisplay = 0;
-            for (var i = 0; i < $scope.allDisplaySizesFromDb.length; i++) {
-                if ($scope.allDisplaySizesFromDb[i] > $scope.maxSizeOfDisplay)
-                    $scope.maxSizeOfDisplay = $scope.allDisplaySizesFromDb[i];
-            }
-            $scope.displaySlider = {
-                minValue: 1,
-                maxValue: $scope.maxSizeOfDisplay,
-                options: {
-                    floor: 1,
-                    ceil: $scope.maxSizeOfDisplay,
-                    step: 1,
-                    noSwitching: true
+        PhoneService
+            .findAll('api/phone/displaySizes/all')
+            .then(function (response) {
+                $scope.allDisplaySizesFromDb = response;
+                $scope.maxSizeOfDisplay = 0;
+                for (var i = 0; i < $scope.allDisplaySizesFromDb.length; i++) {
+                    if ($scope.allDisplaySizesFromDb[i] > $scope.maxSizeOfDisplay)
+                        $scope.maxSizeOfDisplay = $scope.allDisplaySizesFromDb[i];
                 }
-            };
-        });
+                $scope.displaySlider = {
+                    minValue: 1,
+                    maxValue: $scope.maxSizeOfDisplay,
+                    options: {
+                        floor: 1,
+                        ceil: $scope.maxSizeOfDisplay,
+                        step: 1,
+                        noSwitching: true
+                    }
+                };
+            })
     };
     loadAllDisplaySizesFromDb();
-    //here
+
 
     $scope.minPrice = 0;
     $scope.maxPrice = 0;
@@ -121,26 +111,24 @@ angular.module('phonesApp').controller('PhoneController', function ($scope, $res
     var urlToAllPhones = 'api/phone/all';
     var urlToPhones = 'api/phone/all?pageNumber=1&pageSize=50';
     var loadPhonesFromDb = function () {
-        var phones = $resource(urlToAllPhones, {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
+        PhoneService
+            .findAll(urlToAllPhones)
+            .then(function (response) {
+                $scope.phones = response;
+                $rootScope.allPhonesFromDb = response;
 
-        phones.query(function (response) {
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
-            $scope.phones = response; // widoku będziesz używał teraz people
-            $rootScope.allPhonesFromDb = response;
-            $scope.maxPrice = findMaxPrice($scope.phones);
-            $scope.priceSlider = {
-                minValue: 100,
-                maxValue: $scope.maxPrice,
-                options: {
-                    floor: 100,
-                    ceil: $scope.maxPrice,
-                    step: 100,
-                    noSwitching: true
-                }
-            };
-        });
+                $scope.maxPrice = findMaxPrice($scope.phones);
+                $scope.priceSlider = {
+                    minValue: 100,
+                    maxValue: $scope.maxPrice,
+                    options: {
+                        floor: 100,
+                        ceil: $scope.maxPrice,
+                        step: 100,
+                        noSwitching: true
+                    }
+                };
+            })
     };
     loadPhonesFromDb();
 
@@ -154,7 +142,6 @@ angular.module('phonesApp').controller('PhoneController', function ($scope, $res
             $scope.selectionBrand.push(brandName);
         }
     };
-
 
 
     $scope.filterByBrands = function (p) {
