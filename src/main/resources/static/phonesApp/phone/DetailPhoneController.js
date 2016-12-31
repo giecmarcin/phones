@@ -1,16 +1,17 @@
-angular.module('phonesApp').controller('DetailPhoneController', function ($scope, $resource, $http, $routeParams, $rootScope) {
+angular.module('phonesApp').controller('DetailPhoneController', function ($scope, $http, $routeParams, $rootScope, PhoneService) {
     $scope.message = 'Telefony';
-    $scope.phone;
+    $scope.phone = '';
 
-    var loadOnePhoneFromDb = function () {
-        var url = 'api/phone/id/' + $routeParams.id;
-        var onePhone = $resource(url, {}, {
-            query: {method: 'get', isArray: false, cancellable: true}
-        });
+    var loadPhoneData = function (id) {
+        $scope.phone = PhoneService.findOnePhone(id);
+    }
+    loadPhoneData($routeParams.id);
 
-        onePhone.query(function (response) {
-            $scope.phone = response;
-        });
-    };
-    loadOnePhoneFromDb();
+    // var goData = function(){
+    //     PhoneService.findOnePhone($routeParams.id).then(function(data){
+    //         $scope.phone = data;
+    //     });
+    //
+    // };
+    // goData();
 });
