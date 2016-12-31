@@ -3,15 +3,11 @@ angular.module('phonesApp').controller('DetailPhoneController', function ($scope
     $scope.phone = '';
 
     var loadPhoneData = function (id) {
-        $scope.phone = PhoneService.findOnePhone(id);
+        PhoneService
+            .findOnePhone(id)
+            .then(function (response) {
+                $scope.phone = response;
+            })
     }
     loadPhoneData($routeParams.id);
-
-    // var goData = function(){
-    //     PhoneService.findOnePhone($routeParams.id).then(function(data){
-    //         $scope.phone = data;
-    //     });
-    //
-    // };
-    // goData();
 });

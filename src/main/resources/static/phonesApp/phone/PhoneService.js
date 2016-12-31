@@ -6,20 +6,16 @@ angular.module('phonesApp').service('PhoneService', function ($http, $resource) 
      config – {Object} – The configuration object that was used to generate the request.
      statusText – {string} – HTTP status text of the response.
      */
-    this.findOnePhone = function (id, phone) {
+    this.findOnePhone = function (id) {
         var url = 'api/phone/id/' + id;
-        $http({
+        return $http({
             method: "GET",
             url: url
         }).then(function successCallback(response) {
-            //alert(angular.toJson(response.data)); //są dane
+            //return angular.toJson(response.data);
             return response.data;
         }, function errorCallback(response) {
             return response.status;
         });
-    }
-
-    this.method2 = function () {
-        //..
     }
 });
