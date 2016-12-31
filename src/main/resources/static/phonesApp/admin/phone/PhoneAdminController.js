@@ -7,8 +7,8 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
         PhoneService
             .findAll('api/phone/all/quantity')
             .then(function (response) {
-                $scope.allPhones = response;
-                $rootScope.allPhonesFromDb = response;
+                $scope.allPhones = response.data;
+                $rootScope.allPhonesFromDb = response.data;
             })
     };
     loadPhonesFromDb();
