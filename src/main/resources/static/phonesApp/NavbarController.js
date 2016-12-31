@@ -2,7 +2,6 @@ angular.module('phonesApp').controller('NavbarController', function ($scope, $re
     $scope.message = 'Hello from navbarController';
     $scope.email;
     $scope.admin;
-
     var loadCurrentUser = function () {
         //debugger;
         var User = $resource('api/user/current.json', {}, {
@@ -18,8 +17,10 @@ angular.module('phonesApp').controller('NavbarController', function ($scope, $re
 
             if (angular.equals(response.role, 'ROLE_ADMIN')) {
                 $scope.admin = true;
+                $localStorage.isAdmin = true;
             } else {
                 $scope.admin = false;
+                $localStorage.isAdmin = false;
             }
             //alert($scope.admin);
         });
@@ -30,6 +31,7 @@ angular.module('phonesApp').controller('NavbarController', function ($scope, $re
         delete $localStorage.email;
         delete $localStorage.first_name;
         delete $localStorage.last_name;
+        delete $localStorage.isAdmin;
         $localStorage.$reset();
     }
 });

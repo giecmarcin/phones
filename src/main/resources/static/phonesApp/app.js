@@ -3,6 +3,7 @@
  */
 var phonesApp = angular.module('phonesApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'rzModule', 'ngStorage', 'angularUtils.directives.dirPagination']);
 
+
 phonesApp.config(function ($routeProvider) {
     $routeProvider
 
@@ -24,7 +25,31 @@ phonesApp.config(function ($routeProvider) {
         })
         .when('/admin/phone/all', {
             templateUrl: 'views/admin/phone/phones.html',
-            controller: 'PhoneAdminController'
+            controller: 'PhoneAdminController',
+            resolve: {
+                msg: function ($location, $localStorage, UserService) {
+                    UserService
+                        .getCurrentUser()
+                        .then(function (response) {
+                            //$localStorage.isAdmin=false;
+                            if (response.status == 200) {
+                                if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
+                                    $localStorage.isAdmin = true;
+                                } else {
+                                    $localStorage.isAdmin = false;
+                                    if (!$localStorage.isAdmin) {
+                                        $location.path("/");
+                                    }
+                                }
+                            } else {
+                                $localStorage.isAdmin = false;
+                                if (!$localStorage.isAdmin) {
+                                    $location.path("/");
+                                }
+                            }
+                        })
+                }
+            }
         })
         .when('/login', {
             templateUrl: 'views/login.html',
@@ -39,4 +64,10 @@ phonesApp.config(function ($routeProvider) {
             controller: 'AboutController'
         })
         .otherwise({redirectTo: '/'});
+});
+
+phonesApp.run(function ($localStorage) {
+    if ($localStorage.isAdmin == undefined) {
+        $localStorage.isAdmin = false;
+    }
 });
