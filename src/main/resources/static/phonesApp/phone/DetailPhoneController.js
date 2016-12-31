@@ -6,7 +6,9 @@ angular.module('phonesApp').controller('DetailPhoneController', function ($scope
         PhoneService
             .findOnePhone(id)
             .then(function (response) {
-                $scope.phone = response;
+                if (response.status == 200) {
+                    $scope.phone = response.data;
+                }
             })
     }
     loadPhoneData($routeParams.id);

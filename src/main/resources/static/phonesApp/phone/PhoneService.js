@@ -13,7 +13,7 @@ angular.module('phonesApp').service('PhoneService', function ($http, $resource) 
             url: url
         }).then(function successCallback(response) {
             //return angular.toJson(response.data);
-            return response.data;
+            return response;
         }, function errorCallback(response) {
             return response.status;
         });
@@ -25,7 +25,7 @@ angular.module('phonesApp').service('PhoneService', function ($http, $resource) 
             url: url
         }).then(function successCallback(response) {
             //return angular.toJson(response.data);
-            return response.data;
+            return response;
         }, function errorCallback(response) {
             return response.status;
         });
