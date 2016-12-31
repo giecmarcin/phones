@@ -1,4 +1,4 @@
-angular.module('phonesApp').controller('DetailPhoneController', function ($scope, $http, $routeParams, $rootScope, PhoneService) {
+angular.module('phonesApp').controller('DetailPhoneController', function ($scope, $routeParams, $rootScope, PhoneService) {
     $scope.message = 'Telefony';
     $scope.phone = '';
 
