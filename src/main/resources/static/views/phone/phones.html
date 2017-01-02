@@ -76,9 +76,11 @@
                         <br/><b>Pamięć ram:</b> {{p.ram}} GB
                         <br/><b>System:</b> {{p.operatingSystem}}
                     </div>
-                    <a ng-href="index.html#/phone/detail/{{p.id}}" class="btn btn-info"
-                       role="button" ng-click="showDetail($event)" data-id="{{p.id}}">Szczegóły</a>
-                    <a href="" class="btn btn-warning" role="button" ng-click="addItemToBasket(p)">Do koszyka</a>
+                    <div class="product-buttons">
+                        <a ng-href="index.html#/phone/detail/{{p.id}}" class="btn btn-info"
+                           role="button" ng-click="showDetail($event)" data-id="{{p.id}}">Szczegóły</a>
+                        <a href="" class="btn btn-warning" role="button" ng-click="addItemToBasket(p)">Do koszyka</a>
+                    </div>
                 </div>
             </div>
         </div>
