@@ -1,4 +1,4 @@
-angular.module('phonesApp').controller('BasketController', function ($scope, $resource, $http, $routeParams, $rootScope, $localStorage) {
+angular.module('phonesApp').controller('BasketController', function ($scope, $resource, $http, $routeParams, $rootScope, $localStorage, BasketService) {
     $scope.phonesInBasket = [];
     $scope.message;
     $scope.cost = 0;
@@ -39,7 +39,23 @@ angular.module('phonesApp').controller('BasketController', function ($scope, $re
         if ($localStorage.email == undefined) {
             $scope.message = "Proszę się zalogować."
         }
-        //alert($localStorage.email);
+        var order = {
+            customerEmail: $scope.customerEmail,
+            products: $scope.phonesInBasket
+        }
+
+        BasketService
+            .confirmOrder(order)
+            .then(function (response) {
+                alert('test');
+                // if (response.status == 200) {
+                //     alert('Telefon został dodany');
+                // } else {
+                //     alert('Nie udało się dodać telefonu.');
+                // }
+            })
+
+
     }
 
     $scope.addOne = function (p) {
