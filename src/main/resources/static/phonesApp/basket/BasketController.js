@@ -47,12 +47,11 @@ angular.module('phonesApp').controller('BasketController', function ($scope, $re
         BasketService
             .confirmOrder(order)
             .then(function (response) {
-                alert('test');
-                // if (response.status == 200) {
-                //     alert('Telefon został dodany');
-                // } else {
-                //     alert('Nie udało się dodać telefonu.');
-                // }
+                if (response.status == 200) {
+                    alert('Zamówienie zostało przyjęte.');
+                } else {
+                    alert('Nie udało się zrealizować.');
+                }
             })
 
 
