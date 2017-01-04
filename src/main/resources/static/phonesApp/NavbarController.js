@@ -1,29 +1,27 @@
-angular.module('phonesApp').controller('NavbarController', function ($scope, $resource, $localStorage) {
+angular.module('phonesApp').controller('NavbarController', function ($scope, $resource, $localStorage, UserService) {
     $scope.message = 'Hello from navbarController';
     $scope.email;
     $scope.admin;
     var loadCurrentUser = function () {
-        //debugger;
-        var User = $resource('api/user/current.json', {}, {
-            query: {method: 'get', isArray: false, cancellable: true}
-        });
+        UserService
+            .getCurrentUser()
+            .then(function (response) {
+                if (response.status == 200) {
+                    $scope.email = response.data.email;
+                    $localStorage.email = response.data.email;
+                    $localStorage.first_name = response.data.first_name;
+                    $localStorage.last_name = response.data.last_name;
+                    $localStorage.role = response.data.role;
 
-        User.query(function (response) {
-            $scope.email = response.email;
-            $localStorage.email = response.email;
-            $localStorage.first_name = response.first_name;
-            $localStorage.last_name = response.last_name;
-            $localStorage.role = response.role;
-
-            if (angular.equals(response.role, 'ROLE_ADMIN')) {
-                $scope.admin = true;
-                $localStorage.isAdmin = true;
-            } else {
-                $scope.admin = false;
-                $localStorage.isAdmin = false;
-            }
-            //alert($scope.admin);
-        });
+                    if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
+                        $scope.admin = true;
+                        $localStorage.isAdmin = true;
+                    } else {
+                        $scope.admin = false;
+                        $localStorage.isAdmin = false;
+                    }
+                }
+            })
     };
     loadCurrentUser();
 
