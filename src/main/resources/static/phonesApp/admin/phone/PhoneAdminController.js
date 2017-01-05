@@ -56,8 +56,8 @@ angular.module('phonesApp').controller('PhoneAdminController', function ($scope,
     };
 
     $scope.scrollTo = function (id) {
-        $location.hash(id);
-        $anchorScroll();
+        //$location.hash(id);
+        $anchorScroll(id);
     };
 
     function createStringByArray(array) {
