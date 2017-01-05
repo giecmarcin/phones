@@ -1,20 +1,31 @@
 package com.mmgiec.app.controllers;
 
+import com.mmgiec.app.entities.HistoryOfOrders;
+import com.mmgiec.app.entities.User;
 import com.mmgiec.app.model.Order;
 import com.mmgiec.app.model.PhoneAndQuantity;
+import com.mmgiec.app.services.HistoryService;
 import com.mmgiec.app.services.OrderService;
+import com.mmgiec.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private HistoryService historyService;
+
+    @Autowired
+    private UserService userService;
+
     @PostMapping("api/basket/order/confirm")
     public ResponseEntity<?> confirmOrder(@RequestBody Order order) {
         for (PhoneAndQuantity p : order.getProducts()) {
@@ -25,5 +36,14 @@ public class OrderController {
             return new ResponseEntity<Object>(HttpStatus.NOT_MODIFIED);
         }
         return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("api/orders/all/{email}")
+    private ResponseEntity<?> findAllOrders(@PathVariable String email) {
+        User user = userService.findByEmail(email).get();
+        List<HistoryOfOrders> orders = historyService.findByUser(user);
+        if (orders.isEmpty())
+            return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(orders);
     }
 }
