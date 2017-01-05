@@ -21,7 +21,25 @@ phonesApp.config(function ($routeProvider) {
         })
         .when('/phone/add', {
             templateUrl: 'views/phone/add.html',
-            controller: 'AddPhoneController'
+            controller: 'AddPhoneController',
+            resolve: {
+                msg: function ($location, $localStorage, UserService) {
+                    UserService
+                        .getCurrentUser()
+                        .then(function (response) {
+                            //$localStorage.isAdmin=false;
+                            if (response.status == 200) {
+                                if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
+                                    $localStorage.isAdmin = true;
+                                } else {
+                                    $location.path("/");
+                                }
+                            } else {
+                                $location.path("/");
+                            }
+                        })
+                }
+            }
         })
         .when('/admin/phone/all', {
             templateUrl: 'views/admin/phone/phones.html',
