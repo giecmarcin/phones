@@ -67,6 +67,10 @@ phonesApp.config(function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
         })
+        .when('/my/orders', {
+            templateUrl: 'views/user/history.html',
+            controller: 'HistoryController'
+        })
         .otherwise({redirectTo: '/'});
 });
 

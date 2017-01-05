@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class OrderController {
@@ -40,10 +41,14 @@ public class OrderController {
 
     @GetMapping("api/orders/all/{email}")
     private ResponseEntity<?> findAllOrders(@PathVariable String email) {
-        User user = userService.findByEmail(email).get();
-        List<HistoryOfOrders> orders = historyService.findByUser(user);
-        if (orders.isEmpty())
+        Optional<User> user = userService.findByEmail(email);
+        if (user.isPresent()) {
+            List<HistoryOfOrders> orders = historyService.findByUser(user.get());
+            if (orders.isEmpty())
+                return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(orders);
+        } else {
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
-        return ResponseEntity.ok(orders);
+        }
     }
 }

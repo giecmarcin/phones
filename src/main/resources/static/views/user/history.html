@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Zarządzaj</div>
+
+            <br/>
+            <div class="form-group">
+                <center> Filtruj <input ng-model="$ctrl.query"/></center>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Ilość</th>
+                    <th>Data</th>
+                </tr>
+                </thead>
+                <!--mamy petle for each-->
+                <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
+                <tbody>
+                <tr dir-paginate="item in allData | filter:$ctrl.query | itemsPerPage: 9">
+                    <!--<tr ng-repeat="p in allPhones | filter:$ctrl.query">-->
+                    <!--<td>{{$index}}</td>-->
+                    <!--<td>{{ p.phone.id }}</td>-->
+                    <td>
+                        <p ng-repeat="p in item.phoneAndQuantityInOrderList">
+                            {{p.phone.fullName}}
+                        </p>
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <center>
+            <dir-pagination-controls></dir-pagination-controls>
+        </center>
+    </div>
+    <div class="col-md-2"></div>
+</div>

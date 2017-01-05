@@ -18,4 +18,17 @@ angular.module('phonesApp').service('UserService', function ($http) {
             return response.status;
         });
     }
+
+    this.findAllOrdersByUser = function (email) {
+        var url = 'api/orders/all/' + email + '.json';
+        return $http({
+            method: "GET",
+            url: url
+        }).then(function successCallback(response) {
+            //return angular.toJson(response.data);
+            return response;
+        }, function errorCallback(response) {
+            return response.status;
+        });
+    }
 });
