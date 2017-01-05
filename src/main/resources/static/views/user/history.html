@@ -20,21 +20,19 @@
                     <th>Data</th>
                 </tr>
                 </thead>
-                <!--mamy petle for each-->
-                <!--&lt;!&ndash;p.id&ndash;&gt; bo w postmanie w json gostek ma pole o nazwie id i tak samo dla imienie i nazwiska-->
                 <tbody>
                 <tr dir-paginate="item in allData | filter:$ctrl.query | itemsPerPage: 9">
-                    <!--<tr ng-repeat="p in allPhones | filter:$ctrl.query">-->
-                    <!--<td>{{$index}}</td>-->
-                    <!--<td>{{ p.phone.id }}</td>-->
                     <td>
                         <p ng-repeat="p in item.phoneAndQuantityInOrderList">
                             {{p.phone.fullName}}
                         </p>
-
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <p ng-repeat="p in item.phoneAndQuantityInOrderList">
+                            {{p.quantity}}
+                        </p>
+                    </td>
+                    <td>{{item.date}}</td>
                 </tr>
                 </tbody>
             </table>
