@@ -237,4 +237,36 @@ angular.module('phonesApp').controller('PhoneController', function ($scope, $roo
         }
         phoneObject = null;
     }
+
+    $scope.divPriceFilter = false;
+    $scope.showPriceFilter = function () {
+        if ($scope.divPriceFilter == false)
+            $scope.divPriceFilter = true;
+        else
+            $scope.divPriceFilter = false;
+    }
+
+    $scope.divRamFilter = false;
+    $scope.showRamFilter = function () {
+        if ($scope.divRamFilter == false)
+            $scope.divRamFilter = true;
+        else
+            $scope.divRamFilter = false;
+    }
+
+    $scope.divDisplayFilter = false;
+    $scope.showDisplayFilter = function () {
+        if ($scope.divDisplayFilter == false)
+            $scope.divDisplayFilter = true;
+        else
+            $scope.divDisplayFilter = false;
+    }
+
+    $scope.divMemoryFilter = false;
+    $scope.showMemoryFilter = function () {
+        if ($scope.divMemoryFilter == false)
+            $scope.divMemoryFilter = true;
+        else
+            $scope.divMemoryFilter = false;
+    }
 });

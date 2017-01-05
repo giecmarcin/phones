@@ -22,24 +22,24 @@
             </p>
         </div>
 
-        <h4><a href="" data-toggle="collapse" data-target="#phonePrice">Cena</a></h4>
-        <div id="phonePrice" class="collapse">
+        <h4><a href="" ng-click="showPriceFilter()">Cena</a></h4>
+        <div id="phonePrice" ng-if="divPriceFilter">
             <p>Min Value: <input type="number" ng-model="priceSlider.minValue"/></p>
             <p>Max Value: <input type="number" ng-model="priceSlider.maxValue"/></p>
             <rzslider rz-slider-model="priceSlider.minValue" rz-slider-high="priceSlider.maxValue"
                       rz-slider-options="priceSlider.options"></rzslider>
         </div>
 
-        <h4><a href="" data-toggle="collapse" data-target="#ramCollapse">Pamięć ram</a></h4>
-        <div id="ramCollapse" class="collapse">
+        <h4><a href="" ng-click="showRamFilter()">Pamięć ram</a></h4>
+        <div id="ramCollapse" ng-if="divRamFilter">
             <p>Min Value: <input type="number" ng-model="ramSlider.minValue"/></p>
             <p>Max Value: <input type="number" ng-model="ramSlider.maxValue"/></p>
             <rzslider rz-slider-model="ramSlider.minValue" rz-slider-high="ramSlider.maxValue"
                       rz-slider-options="ramSlider.options"></rzslider>
         </div>
 
-        <h4><a href="" data-toggle="collapse" data-target="#displayCollapse">Ekran</a></h4>
-        <div id="displayCollapse" class="collapse">
+        <h4><a href="" ng-click="showDisplayFilter()">Ekran</a></h4>
+        <div id="displayCollapse" ng-if="divDisplayFilter">
             <p>Min Value: <input type="number" ng-model="displaySlider.minValue"/></p>
             <p>Max Value: <input type="number" ng-model="displaySlider.maxValue"/></p>
 
@@ -47,8 +47,8 @@
                       rz-slider-options="displaySlider.options"></rzslider>
         </div>
 
-        <h4><a href="" data-toggle="collapse" data-target="#memoryCollapse">Pamięć wbudowana</a></h4>
-        <div id="memoryCollapse" class="collapse">
+        <h4><a href="" ng-click="showMemoryFilter()">Pamięć wbudowana</a></h4>
+        <div id="memoryCollapse" ng-if="divMemoryFilter">
             <p>Min Value: <input type="number" ng-model="memorySlider.minValue"/></p>
             <p>Max Value: <input type="number" ng-model="memorySlider.maxValue"/></p>
 
