@@ -49,6 +49,7 @@ angular.module('phonesApp').controller('BasketController', function ($scope, $re
             .then(function (response) {
                 if (response.status == 200) {
                     alert('Zamówienie zostało przyjęte.');
+                    $scope.removeAllItems();
                 } else {
                     alert('Nie udało się zrealizować.');
                 }

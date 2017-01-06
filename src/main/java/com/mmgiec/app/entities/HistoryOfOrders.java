@@ -23,6 +23,8 @@ public class HistoryOfOrders {
     @JsonFormat(pattern = "yyyy/MM/dd")
     private LocalDate date;
 
+    private double totalCost;
+
     public HistoryOfOrders() {
     }
 
@@ -30,6 +32,7 @@ public class HistoryOfOrders {
         this.user = user;
         this.phoneAndQuantityInOrderList = phoneAndQuantityInOrderList;
         this.date = date;
+        this.totalCost = calculateCost();
     }
 
     public int getId() {
@@ -62,5 +65,21 @@ public class HistoryOfOrders {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public double calculateCost() {
+        double result = 0;
+        for (PhoneAndQuantityInOrder item : phoneAndQuantityInOrderList) {
+            result += item.getPhone().getPrice() * item.getQuantity();
+        }
+        return result;
     }
 }
