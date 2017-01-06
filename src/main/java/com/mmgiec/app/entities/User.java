@@ -1,7 +1,10 @@
 package com.mmgiec.app.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class User {
@@ -13,7 +16,8 @@ public class User {
     private String last_name;
     private String email;
     private String password;
-    private int dateOfBirth;
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private LocalDate dateOfBirth;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -70,11 +74,11 @@ public class User {
         this.role = role;
     }
 
-    public int getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(int dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

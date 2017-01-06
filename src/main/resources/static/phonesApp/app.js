@@ -71,6 +71,10 @@ phonesApp.config(function ($routeProvider) {
             templateUrl: 'views/user/history.html',
             controller: 'HistoryController'
         })
+        .when('/register', {
+            templateUrl: 'views/user/register.html',
+            controller: 'RegisterController'
+        })
         .otherwise({redirectTo: '/'});
 });
 

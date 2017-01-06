@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class Init {
             User userAdmin = new User();
             userAdmin.setFirst_name("Admin");
             userAdmin.setLast_name("Admin");
+            userAdmin.setDateOfBirth(LocalDate.now());
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             userAdmin.setPassword(encoder.encode("admin"));
             userAdmin.setEmail("admin@gmail.com");
@@ -63,6 +65,7 @@ public class Init {
             User regularUser = new User();
             regularUser.setFirst_name("User");
             regularUser.setLast_name("User");
+            regularUser.setDateOfBirth(LocalDate.now());
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             regularUser.setPassword(encoder.encode("user"));
             regularUser.setEmail("user@gmail.com");
