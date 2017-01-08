@@ -5,13 +5,15 @@
 
         <h4><a href="" data-toggle="collapse" data-target="#phoneModel">Model</a></h4>
         <div id="phoneModel" class="collapse">
-            Search: <input ng-model="$ctrl.query"/>
+            Search: <input ng-model="$ctrl.query" class="form-control input-sm"/>
         </div>
 
         <h4><a href="" data-toggle="collapse" data-target="#brandCollapse">Producent</a></h4>
         <div id="brandCollapse" class="collapse">
+            <!--<div class="checkbox">-->
             <input type="checkbox" checked ng-click="uncheckedBrands()">Wszyscy</input>
             <p ng-repeat="brandName in brands">
+
                 <input
                         type="checkbox"
                         name="selectedBrands[]"
@@ -20,28 +22,31 @@
                         ng-click="toggleSelection(brandName)"/>{{brandName}}
 
             </p>
+            <!--</div>-->
         </div>
 
         <h4><a href="" ng-click="showPriceFilter()">Cena</a></h4>
         <div id="phonePrice" ng-if="divPriceFilter">
-            <p>Min Value: <input type="number" ng-model="priceSlider.minValue"/></p>
-            <p>Max Value: <input type="number" ng-model="priceSlider.maxValue"/></p>
+            <p>Min Value: <input type="number" ng-model="priceSlider.minValue" class="form-control input-sm"/></p>
+            <p>Max Value: <input type="number" ng-model="priceSlider.maxValue" class="form-control input-sm"/></p>
             <rzslider rz-slider-model="priceSlider.minValue" rz-slider-high="priceSlider.maxValue"
                       rz-slider-options="priceSlider.options"></rzslider>
         </div>
 
         <h4><a href="" ng-click="showRamFilter()">Pamięć ram</a></h4>
         <div id="ramCollapse" ng-if="divRamFilter">
-            <p>Min Value: <input type="number" ng-model="ramSlider.minValue"/></p>
-            <p>Max Value: <input type="number" ng-model="ramSlider.maxValue"/></p>
-            <rzslider rz-slider-model="ramSlider.minValue" rz-slider-high="ramSlider.maxValue"
-                      rz-slider-options="ramSlider.options"></rzslider>
+            <div class="form-group">
+                <p>Min Value: <input type="number" ng-model="ramSlider.minValue" class="form-control input-sm"/></p>
+                <p>Max Value: <input type="number" ng-model="ramSlider.maxValue" class="form-control input-sm"/></p>
+                <rzslider rz-slider-model="ramSlider.minValue" rz-slider-high="ramSlider.maxValue"
+                          rz-slider-options="ramSlider.options"></rzslider>
+            </div>
         </div>
 
         <h4><a href="" ng-click="showDisplayFilter()">Ekran</a></h4>
         <div id="displayCollapse" ng-if="divDisplayFilter">
-            <p>Min Value: <input type="number" ng-model="displaySlider.minValue"/></p>
-            <p>Max Value: <input type="number" ng-model="displaySlider.maxValue"/></p>
+            <p>Min Value: <input type="number" ng-model="displaySlider.minValue" class="form-control input-sm"/></p>
+            <p>Max Value: <input type="number" ng-model="displaySlider.maxValue" class="form-control input-sm"/></p>
 
             <rzslider rz-slider-model="displaySlider.minValue" rz-slider-high="displaySlider.maxValue"
                       rz-slider-options="displaySlider.options"></rzslider>
@@ -49,8 +54,8 @@
 
         <h4><a href="" ng-click="showMemoryFilter()">Pamięć wbudowana</a></h4>
         <div id="memoryCollapse" ng-if="divMemoryFilter">
-            <p>Min Value: <input type="number" ng-model="memorySlider.minValue"/></p>
-            <p>Max Value: <input type="number" ng-model="memorySlider.maxValue"/></p>
+            <p>Min Value: <input type="number" ng-model="memorySlider.minValue" class="form-control input-sm"/></p>
+            <p>Max Value: <input type="number" ng-model="memorySlider.maxValue" class="form-control input-sm"/></p>
 
 
             <rzslider rz-slider-model="memorySlider.minValue" rz-slider-high="memorySlider.maxValue"
