@@ -16,8 +16,6 @@ public class User {
     private String last_name;
     private String email;
     private String password;
-    @JsonFormat(pattern = "yyyy/MM/dd")
-    private LocalDate dateOfBirth;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -72,14 +70,6 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 }
 

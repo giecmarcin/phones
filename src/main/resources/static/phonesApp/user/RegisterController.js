@@ -1,23 +1,24 @@
 angular.module('phonesApp').controller('RegisterController', function ($scope, $routeParams, $rootScope, UserService) {
-    $scope.allData;
-    // $scope.currentUser;
-    //
-    // var loadData = function () {
-    //     UserService.getCurrentUser()
-    //         .then(function (response) {
-    //             if (response.status == 200) {
-    //                 $scope.currentUser = response.data;
-    //
-    //                 UserService.findAllOrdersByUser($scope.currentUser.email)
-    //                     .then(function (response2) {
-    //                         if (response2.status == 200) {
-    //                             $scope.allData = response2.data;
-    //                             alert($scope.allData[0].phoneAndQuantityInOrderList[0].quantity);
-    //                             //console.log(angular.toJson($scope.allData));
-    //                         }
-    //                     })
-    //             }
-    //         })
-    // }
-    // loadData();
+    $scope.email;
+    $scope.password;
+    $scope.name;
+    $scope.last_name;
+
+    $scope.saveUser = function () {
+        var user = {
+            first_name:$scope.name,
+            last_name :$scope.last_name,
+            email: $scope.email,
+            password: $scope.password,
+        }
+        UserService
+            .addUser(user)
+            .then(function (response) {
+                if (response.status == 200) {
+                    alert('Możesz teraz się zalogować.');
+                } else {
+                    alert('Wystąpił problem podczas rejestracji');
+                }
+            })
+    }
 });

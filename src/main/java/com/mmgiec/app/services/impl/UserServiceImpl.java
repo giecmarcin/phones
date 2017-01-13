@@ -4,6 +4,7 @@ import com.mmgiec.app.entities.User;
 import com.mmgiec.app.repositories.UserRepository;
 import com.mmgiec.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
