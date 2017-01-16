@@ -1,5 +1,6 @@
 package com.mmgiec.app.services.impl;
 
+import com.mmgiec.app.entities.Role;
 import com.mmgiec.app.entities.User;
 import com.mmgiec.app.repositories.UserRepository;
 import com.mmgiec.app.services.UserService;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setRole(Role.ROLE_USER);
         userRepository.save(user);
     }
 
