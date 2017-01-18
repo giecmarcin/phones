@@ -1,4 +1,4 @@
-angular.module('phonesApp').controller('RegisterController', function ($scope, $routeParams, $rootScope, UserService) {
+angular.module('phonesApp').controller('RegisterController', function ($scope, $routeParams, $rootScope, UserService, $window) {
     $scope.email;
     $scope.password;
     $scope.name;
@@ -16,6 +16,7 @@ angular.module('phonesApp').controller('RegisterController', function ($scope, $
             .then(function (response) {
                 if (response.status == 200) {
                     alert('Możesz teraz się zalogować.');
+                    $window.location.href = '/login';
                 } else {
                     alert('Wystąpił problem podczas rejestracji');
                 }
