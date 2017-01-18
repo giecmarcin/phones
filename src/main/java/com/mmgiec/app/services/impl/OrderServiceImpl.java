@@ -1,5 +1,6 @@
 package com.mmgiec.app.services.impl;
 
+import com.itextpdf.text.DocumentException;
 import com.mmgiec.app.entities.HistoryOfOrders;
 import com.mmgiec.app.entities.PhoneAndQuantityInOrder;
 import com.mmgiec.app.entities.User;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,10 +63,19 @@ public class OrderServiceImpl implements OrderService {
             User customer = userService.findByEmail(order.getCustomerEmail()).get();
             HistoryOfOrders historyOfOrders = new HistoryOfOrders(customer, phonesInOrder, LocalDate.now());
             historyOfOrdersRepository.save(historyOfOrders);
-            if (historyOfOrders.getId() == 0)
+            if (historyOfOrders.getId() == 0) {
                 isSuccess = false;
-            else
+            } else {
                 isSuccess = true;
+                Pdf pdf = new Pdf(phonesInOrder,customer);
+                try {
+                    pdf.create();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return isSuccess;
     }
