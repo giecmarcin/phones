@@ -52,8 +52,7 @@ public class Init {
             User userAdmin = new User();
             userAdmin.setFirst_name("Admin");
             userAdmin.setLast_name("Admin");
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            userAdmin.setPassword(encoder.encode("admin"));
+            userAdmin.setPassword("admin");
             userAdmin.setEmail("admin@gmail.com");
             userAdmin.setRole(Role.ROLE_ADMIN);
             userService.save(userAdmin);
@@ -64,8 +63,7 @@ public class Init {
             User regularUser = new User();
             regularUser.setFirst_name("User");
             regularUser.setLast_name("User");
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            regularUser.setPassword(encoder.encode("user"));
+            regularUser.setPassword("user");
             regularUser.setEmail("user@gmail.com");
             regularUser.setRole(Role.ROLE_USER);
             userService.save(regularUser);
