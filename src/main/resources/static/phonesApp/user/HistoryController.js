@@ -12,7 +12,7 @@ angular.module('phonesApp').controller('HistoryController', function ($scope, $r
                         .then(function (response2) {
                             if (response2.status == 200) {
                                 $scope.allData = response2.data;
-                                alert($scope.allData[0].phoneAndQuantityInOrderList[0].quantity);
+                                //alert($scope.allData[0].phoneAndQuantityInOrderList[0].quantity);
                                 //console.log(angular.toJson($scope.allData));
                             }
                         })
