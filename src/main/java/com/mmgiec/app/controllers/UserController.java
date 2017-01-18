@@ -1,5 +1,6 @@
 package com.mmgiec.app.controllers;
 
+import com.mmgiec.app.entities.Role;
 import com.mmgiec.app.entities.User;
 import com.mmgiec.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<?> addUser(@RequestBody User user) {
+        user.setRole(Role.ROLE_USER);
         userService.save(user);
         if (user.getId_user() != 0) {
             return ResponseEntity.ok(user);
