@@ -1,4 +1,4 @@
-angular.module('phonesApp').controller('BasketController', function ($scope, $resource, $http, $routeParams, $rootScope, $localStorage, BasketService) {
+angular.module('phonesApp').controller('BasketController', function ($scope, $resource, $http, $routeParams, $rootScope, $localStorage, BasketService, UserService) {
     $scope.phonesInBasket = [];
     $scope.message;
     $scope.cost = 0;
@@ -36,26 +36,32 @@ angular.module('phonesApp').controller('BasketController', function ($scope, $re
     }
 
     $scope.confirmOrder = function () {
-        if ($localStorage.email == undefined) {
-            $scope.message = "Proszę się zalogować."
-        }
-        var order = {
-            customerEmail: $scope.customerEmail,
-            products: $scope.phonesInBasket
-        }
-
-        BasketService
-            .confirmOrder(order)
+        UserService
+            .getCurrentUser()
             .then(function (response) {
                 if (response.status == 200) {
-                    alert('Zamówienie zostało przyjęte.');
-                    $scope.removeAllItems();
+                    if ($localStorage.email == undefined) {
+                        $scope.message = "Proszę się zalogować."
+                    }
+                    var order = {
+                        customerEmail: $scope.customerEmail,
+                        products: $scope.phonesInBasket
+                    }
+
+                    BasketService
+                        .confirmOrder(order)
+                        .then(function (response) {
+                            if (response.status == 200) {
+                                alert('Zamówienie zostało przyjęte.');
+                                $scope.removeAllItems();
+                            } else {
+                                alert('Nie udało się zrealizować.');
+                            }
+                        })
                 } else {
-                    alert('Nie udało się zrealizować.');
+                    alert('Proszę się zalogować.');
                 }
             })
-
-
     }
 
     $scope.addOne = function (p) {
