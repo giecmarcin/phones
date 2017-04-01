@@ -10,7 +10,7 @@ public class ImageUrl {
 //    @Lob
 //    private byte image[];
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String image;
 
     public ImageUrl() {

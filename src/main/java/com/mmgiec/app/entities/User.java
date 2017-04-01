@@ -1,12 +1,9 @@
 package com.mmgiec.app.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 
-@Entity
+@Entity(name = "_User")
 public class User {
 
     @Id

@@ -18,7 +18,7 @@ public class ConverterJSON {
 
     public List<Phone> convertToList() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        List<PhoneJSON> objects = Arrays.asList(mapper.readValue(new File("d:\\phones-final.json"), PhoneJSON[].class));
+        List<PhoneJSON> objects = Arrays.asList(mapper.readValue(new File("/home/marcin/Documents/phones-final.json"), PhoneJSON[].class));
         List<Phone> phones = new ArrayList<>();
         Phone phone = null;
         for (PhoneJSON p : objects) {

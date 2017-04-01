@@ -19,14 +19,14 @@ public class UserRepository {
     }
 
     public Optional<User> findByEmail(String email){
-        TypedQuery<User> query = entityManager.createQuery("select u from User u where u.email=:email", User.class);
+        TypedQuery<User> query = entityManager.createQuery("select u from _User u where u.email=:email", User.class);
         query.setParameter("email", email);
         query.setMaxResults(1);
         return query.getResultList().stream().findFirst();
     }
 
     public List<User> findAll(){
-        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
+        TypedQuery<User> query = entityManager.createQuery("select u from _User u", User.class);
         return query.getResultList();
     }
 }

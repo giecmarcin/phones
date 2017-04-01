@@ -10,7 +10,7 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String brand;
-    @Column(columnDefinition="LONGTEXT", unique = true)
+    @Column(columnDefinition="TEXT", unique = true)
     private String fullName;
     private double price;
     private String processor;
@@ -39,7 +39,7 @@ public class Phone {
     @JoinColumn(name = "phone_id")
     private List<ImageUrl> imageUrl = new ArrayList<>();
     private String imageUrlXKom;
-    @Column(columnDefinition="LONGTEXT")
+    @Column(columnDefinition="TEXT")
     private String extraInfo;
     private String guarantee;
     private String resolutionRecordingVideo;
