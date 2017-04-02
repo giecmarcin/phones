@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service
 @Transactional
@@ -103,5 +105,30 @@ public class PhoneServiceImpl implements PhoneService {
     public void updateWithQuantity(Phone phone, int newQuantity) {
         phoneRepository.update(phone);
         warehouseRepository.updateByPhoneId(phone.getId(), newQuantity);
+    }
+
+    public void findSimilar(Phone p1){
+        List<Phone> all = findAll();
+        Map<Double, Phone> sortedMap = new TreeMap<>();
+        for(int i=0; i<all.size();i++){
+            Phone p2 = all.get(i);
+            double tempResultPrice  = Math.abs(p1.getPrice()- p2.getPrice());
+            double tempResultRam = Math.abs(p1.getRam()- p2.getRam());
+            double tempResultInMemory = Math.abs(p1.getBuiltInMemory()- p2.getBuiltInMemory());
+            double tempResultDisplay = Math.abs(p1.getSizeOfDisplay()- p2.getSizeOfDisplay());
+            double sum = tempResultPrice+tempResultRam+tempResultInMemory+tempResultDisplay;
+            sortedMap.put(sum,p2);
+        }
+        System.out.println("Id podobnych: ");
+        int i=0;
+        for (Map.Entry<Double, Phone> entry : sortedMap.entrySet()) {
+//            System.out.println("Key : " + entry.getKey()
+//                    + " Value : " + entry.getValue());
+            //if(i<3){
+                System.out.println("Avg: " + entry.getKey() + " Id: " + entry.getValue().getId());
+                //break;
+//            }
+//            i++;
+        }
     }
 }

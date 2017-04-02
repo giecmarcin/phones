@@ -33,4 +33,5 @@ public interface PhoneService {
     void removeWithWarehouse(int phoneId);
 
     void updateWithQuantity(Phone phone, int newQuantity);
+    void findSimilar(Phone p1);
 }
