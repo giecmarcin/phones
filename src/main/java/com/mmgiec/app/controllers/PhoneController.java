@@ -112,4 +112,14 @@ public class PhoneController {
         //System.out.println(phoneAndQuantity.getPhone().getCommunication().get(0).getName());
         phoneService.updateWithQuantity(phoneAndQuantity.getPhone(), phoneAndQuantity.getQuantity());
     }
+
+    @GetMapping("api/phone/similar/{id}")
+    public void findSimilar(@PathVariable int id) {
+        Phone phone = phoneService.findOne(id);
+        if(phone!=null)
+            phoneService.findSimilar(phone);
+//        if (quantity == 0)
+//            return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+//        return ResponseEntity.ok(quantity);
+    }
 }
